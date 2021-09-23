@@ -13,7 +13,11 @@ int main(){
     //To Create a String
     char phrase[] = "My Name is Bharath"; // To create a string we need to use double quotes
 
-    printf("The variable of type integer is storing %d\n", age);
+    // It is a function which prints the data on the screen
+    // To create a new line we can use \n
+    // for quotation we need to use \"
+    printf("Hello \"This program is very important\"");
+    printf("The variable of type integer is storing %d\n", age);  
     printf("The variable of type float is storing %f\n", decimal);
     printf("The variable of type char is storing %c\n", grade);
     printf("The variable of type phrase is storing %s", phrase);    
