@@ -8,3 +8,6 @@ void main(){        //method is just like a container where we can put our code
 
 // This C code has to be complied which will convert the langauge above 
 // into a binary language which is understood by the computer
+
+// We are writing a set of instructions which when executed correctly
+// will result in the computer doing something for the user
