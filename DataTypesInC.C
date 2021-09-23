@@ -22,12 +22,12 @@ int main(){
     printf("The variable of type integer is storing %d\n", age);    // %d is used as format specifier for decimal numbers
     printf("The variable of type float is storing %f\n", decimal);  // %f is used as format specifier for float numbers
     printf("The variable of type char is storing %c\n", grade);     // %c is used as format specifier for characters
-    printf("The variable of type phrase is storing %s", phrase);    // %s is used as format specifier for string
+    printf("The variable of type phrase is storing %s\n", phrase);    // %s is used as format specifier for string
 
-    printf("My Favourite %s is %d", "number", 500); // Here we are directly passing the string
+    printf("My Favourite %s is %d\n", "number", 500); // Here we are directly passing the string
                                                     // and decimal value in printf function
 
-    
+
 
     return 0;
 }
