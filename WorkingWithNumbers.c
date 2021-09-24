@@ -29,5 +29,6 @@ int main(){
     printf("%f\n", ceil(35.1));   // ceil(double number) is the syntax where it rounds off to the next value
                                     //format specifier must be %f  
 
-    return 0;       
+    printf("%f\n", floor(35.6));  //floor(double number) is the syntax where it rounds off to the previous value  
+    return 0;                     // format specifier must be %f  
 }
