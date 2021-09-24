@@ -26,5 +26,8 @@ int main(){
                                 // of the number entered as parameter
                                 // Here we need to use format specifier as %f when using sqrt() function 
     
+    printf("%f\n", ceil(35.1));   // ceil(double number) is the syntax where it rounds off to the next value
+                                    //format specifier must be %f  
+
     return 0;       
 }
