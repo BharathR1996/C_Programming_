@@ -9,15 +9,18 @@ int main(){
     printf("%d\n", num);
     
     /* how to use a constant variable */
-    int const num1 = 5;         // constant numbers are read only variables.
+
+    // Generally programmers declare constants using uppercase letters just to distinguish between constants and variables
+    int const NUM1 = 5;         // constant numbers are read only variables.
                                 // we cannot write data into the variables.
-    const int num2 = 8;         // we can declare a constant integer as 
+    const int NUM2 = 8;         // we can declare a constant integer as 
                                                     // int const variable_name (OR) const int variable_name
 
-    printf("%d\n", num1);
-    printf("%d\n", num2);
+    printf("%d\n", NUM1);
+    printf("%d\n", NUM2);
     //num1 = 8;               // this gives me an error i.e. assignment of read only variable
     
-    
+    printf("%d\n", 90);     // This is also considered as constants
+    printf("Hello\n");      // This is also considered as constants
     return 0;
 }
