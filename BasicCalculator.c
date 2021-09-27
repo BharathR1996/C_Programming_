@@ -2,15 +2,15 @@
 
 int main(){
 
-    int data1, data2, result;
+    double data1, data2, result;
     printf("Enter the first Number: \n");
-    scanf("%d", &data1);
+    scanf("%lf", &data1);
     printf("Enter the second Number: \n");
-    scanf("%d", &data2);
+    scanf("%lf", &data2);
     
     result = data1 + data2;
 
-    printf("The result is: %d\n", result);
+    printf("The result is: %.2f\n", result);
     return 0;
-    
+
 }
