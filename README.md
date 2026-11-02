@@ -42,6 +42,7 @@ example with its own `main` function; compile and run one source file at a time.
     - [Macro_SetClearToggleRead.c](#macro_setcleartogglereadc)
     - [ReverseBitsofNumber.c](#reversebitsofnumberc)
     - [SwapBytes.c](#swapbytesc)
+    - [LittleBigEndianConverter.c](#littlebigendianconverterc)
     - [regWriteOnlySpecificRange.c](#regwriteonlyspecificrangec)
 
 ## Getting started
@@ -658,6 +659,28 @@ Bytes are swapped!!!
 
 The current `scanf` format uses `%hd` for a `uint16_t`; use a format matched to
 the actual type for portable input.
+
+---
+
+#### LittleBigEndianConverter.c
+
+**Problem:** Inspect the bytes of a hexadecimal 32-bit value and demonstrate a
+byte-order conversion.
+
+**Logic:** Read a hexadecimal value, print its four bytes and their memory
+addresses, then ask for a byte-order selection. The `LITTLE_ENDIAN` branch
+reverses the value's four bytes; the `BIG_ENDIAN` branch leaves the value
+unchanged.
+
+**Flow:** Start → read hexadecimal value → print its bytes and addresses →
+read byte-order selection → reverse bytes for selection 0 or preserve them for
+selection 1 → print converted value → End.
+
+**Output note:** Memory addresses vary between runs and platforms. The current
+program also writes one byte past the end of the value while inspecting it,
+and its `scanf`/`printf` format specifiers are not portable for the declared
+integer types. These issues can cause undefined behavior, so its output should
+not be treated as reliable until they are corrected.
 
 ---
 
