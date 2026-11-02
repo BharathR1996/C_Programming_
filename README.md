@@ -39,6 +39,7 @@ example with its own `main` function; compile and run one source file at a time.
   - [Bit operations and registers](#bit-operations-and-registers)
     - [SetBitCount.c](#setbitcountc)
     - [NumberIsPowerOf2.c](#numberispowerof2c)
+    - [HighestLowestSetBit.c](#highestlowestsetbitc)
     - [Macro_SetClearToggleRead.c](#macro_setcleartogglereadc)
     - [ReverseBitsofNumber.c](#reversebitsofnumberc)
     - [SwapBytes.c](#swapbytesc)
@@ -591,6 +592,35 @@ loop starts at bit 1, skipping the least-significant bit. Its `scanf` and
 its result is not reliable. A correct implementation should initialize the
 counter, inspect every bit (or use `n != 0 && (n & (n - 1)) == 0`), and use
 format specifiers matching the integer type.
+
+---
+
+#### HighestLowestSetBit.c
+
+**Problem:** Find the positions of the highest and lowest set bits in a
+32-bit signed integer.
+
+**Logic:** Scan from the most-significant end and the least-significant end
+until a set bit is found. The reported positions are zero-based, with bit 0
+being the least-significant bit. `FindHighLowBitSet` is declared as
+`void (*FindHighLowBitSet[2])(int32_t, uint8_t *)`: it is an array of two
+function pointers to functions that take an `int32_t` and a `uint8_t *`, and
+return `void`. The parentheses group the pointer declarator so the parameter
+list describes the function type being pointed to.
+
+**Function-pointer use:** The array initializes index 0 with
+`highestBitSet` and index 1 with `lowestBitSet`. Expressions such as
+`FindHighLowBitSet[0](data, &findHigh)` call the selected function; its output
+pointer writes the scan offset to `findHigh`.
+
+**Flow:** Start → read an integer → scan from both ends for set bits → print
+the two positions → End.
+
+**Output note:** The scans have no handling for an input of zero, so the
+program can shift beyond the 32-bit value without finding a set bit. Shifts
+and input/output format specifiers also are not portable for all `int32_t`
+implementations. Use a nonzero input and correct these issues before relying
+on the result.
 
 ---
 
