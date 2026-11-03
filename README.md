@@ -1,8 +1,9 @@
 # C Programming Examples
 
 This repository is a collection of small C programs covering basic syntax,
-input/output, arithmetic, and bit manipulation. Each program is a standalone
-example with its own `main` function; compile and run one source file at a time.
+input/output, arithmetic, bit manipulation, and POSIX threads. Each program is
+a standalone example with its own `main` function; compile and run one source
+file at a time.
 
 > **Note:** The examples are educational and are not all production-ready.
 > A few currently contain format-string mismatches, uninitialized variables,
@@ -45,6 +46,8 @@ example with its own `main` function; compile and run one source file at a time.
     - [SwapBytes.c](#swapbytesc)
     - [LittleBigEndianConverter.c](#littlebigendianconverterc)
     - [regWriteOnlySpecificRange.c](#regwriteonlyspecificrangec)
+  - [Threads](#threads)
+    - [Thread_Test.c](#thread_testc)
 
 ## Getting started
 
@@ -61,6 +64,13 @@ source file:
 
 ```sh
 gcc -Wall -Wextra -g WorkingWithNumbers.c -lm -o working_with_numbers
+```
+
+For `Thread_Test.c`, enable POSIX thread support with `-pthread`:
+
+```sh
+gcc -Wall -Wextra -g Thread_Test.c -pthread -o thread_test
+./thread_test
 ```
 
 The source file [SquareAndCube.c](.vscode/SquareAndCube.c) is in the `.vscode`
@@ -733,3 +743,32 @@ at the register boundary, clearing a bit with input zero does not actually
 clear it, and verification iterates one position past the requested field.
 The status variable is also uninitialized on the rejected-range path. These
 issues should be corrected before relying on the program's output.
+
+### Threads
+
+#### Thread_Test.c
+
+**Problem:** Demonstrate running work on a POSIX thread alongside work on the
+main thread.
+
+**Logic:** `pthread_create` starts `myFun1` on a new thread, while the main
+thread calls `myFun2`. `pthread_join` waits for `myFun1` to finish before the
+process exits. The two functions sleep and print counters, so their output can
+interleave differently on different runs.
+
+**API declarations:** `<pthread.h>` declares `pthread_create` as
+`int pthread_create(pthread_t *thread, const pthread_attr_t *attr,
+void *(*start_routine)(void *), void *arg)` and `pthread_join` as
+`int pthread_join(pthread_t thread, void **retval)`. A thread start routine
+receives one `void *` argument and returns a `void *`; the supplied `arg` is
+passed to it. Passing `NULL` for `attr` uses default thread attributes, and
+passing `NULL` for `retval` means the joining thread does not collect the
+thread's return value. Both functions return zero on success or an error
+number on failure.
+
+**Flow:** Start → create a worker thread → run `myFun2` on the main thread
+while `myFun1` runs concurrently → join the worker → End.
+
+**Build:** Compile with `-pthread` as shown in [Getting started](#getting-started).
+
+**Reference:** [Multithreaded Programming (POSIX pthreads Tutorial)](https://randu.org/tutorials/threads/).
