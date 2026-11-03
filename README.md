@@ -10,6 +10,9 @@ file at a time.
 > or other behavior that is undefined in C. Those cases are called out below;
 > their output may differ between builds or machines.
 
+Each C source file is stored in its own folder, named after the file, under a
+folder for its topic.
+
 ## Table of contents
 
 - [Getting started](#getting-started)
@@ -55,7 +58,7 @@ Install GCC and GDB, then open a terminal in the repository directory. Compile
 one source file into an executable and run it:
 
 ```sh
-gcc -Wall -Wextra -g MyFirstProgram.c -o my_first_program
+gcc -Wall -Wextra -g Fundamentals-and-Types/MyFirstProgram/MyFirstProgram.c -o my_first_program
 ./my_first_program
 ```
 
@@ -63,41 +66,44 @@ For `WorkingWithNumbers.c`, link the math library by adding `-lm` after the
 source file:
 
 ```sh
-gcc -Wall -Wextra -g WorkingWithNumbers.c -lm -o working_with_numbers
+gcc -Wall -Wextra -g Arithmetic-and-Calculations/WorkingWithNumbers/WorkingWithNumbers.c -lm -o working_with_numbers
 ```
 
 For `Thread_Test.c`, enable POSIX thread support with `-pthread`:
 
 ```sh
-gcc -Wall -Wextra -g Thread_Test.c -pthread -o thread_test
+gcc -Wall -Wextra -g Threads/Thread_Test/Thread_Test.c -pthread -o thread_test
 ./thread_test
 ```
 
-The source file [SquareAndCube.c](.vscode/SquareAndCube.c) is in the `.vscode`
-directory. Quote the filename [PrintFandCusing#.c](<PrintFandCusing#.c>) when
+The source file [SquareAndCube.c](Arithmetic-and-Calculations/SquareAndCube/SquareAndCube.c)
+is grouped with the other arithmetic examples. Quote the path
+[PrintFandCusing#.c](<Input-and-Text-Output/PrintFandCusing#/PrintFandCusing#.c>) when
 using it in a shell command because `#` has special meaning in some shell
 contexts:
 
 ```sh
-gcc -Wall -Wextra -g 'PrintFandCusing#.c' -o print_shapes
+gcc -Wall -Wextra -g 'Input-and-Text-Output/PrintFandCusing#/PrintFandCusing#.c' -o print_shapes
 ```
 
 GCC treats the uppercase `.C` suffix as C++, so explicitly select C when
-compiling [DataTypesInC.C](DataTypesInC.C):
+compiling [DataTypesInC.C](Fundamentals-and-Types/DataTypesInC/DataTypesInC.C):
 
 ```sh
-gcc -x c -Wall -Wextra -g DataTypesInC.C -o data_types
+gcc -x c -Wall -Wextra -g Fundamentals-and-Types/DataTypesInC/DataTypesInC.C -o data_types
 ```
 
 ## GCC and GDB command reference
 
-In the examples below, replace `source.c` with a source filename and
+In the examples below, replace `source.c` with the path to a source file in its
+folder (for example,
+`Arithmetic-and-Calculations/BasicCalculator/BasicCalculator.c`) and
 `program` with the executable name you want to create. Use quotes around
 filenames containing shell-special characters.
 
 | Tool | Command prototype | Example / purpose |
 |---|---|---|
-| GCC | `gcc [options] source.c -o program` | `gcc -Wall -Wextra -g BasicCalculator.c -o calculator` compiles with common warnings and debugger information. |
+| GCC | `gcc [options] source.c -o program` | `gcc -Wall -Wextra -g Arithmetic-and-Calculations/BasicCalculator/BasicCalculator.c -o calculator` compiles with common warnings and debugger information. |
 | GCC | `gcc -std=c11 -Wall -Wextra source.c -o program` | Selects the C11 language standard and enables warnings. |
 | GCC | `gcc -x c source.C -o program` | Forces GCC to treat a source file with uppercase `.C` suffix as C rather than C++. |
 | GCC | `gcc source.c -lm -o program` | Links the math library; `-lm` follows the source/object files. |
@@ -117,7 +123,7 @@ filenames containing shell-special characters.
 ### Example debugging session
 
 ```text
-$ gcc -Wall -Wextra -g BasicCalculator.c -o calculator
+$ gcc -Wall -Wextra -g Arithmetic-and-Calculations/BasicCalculator/BasicCalculator.c -o calculator
 $ gdb ./calculator
 (gdb) break main
 (gdb) run
@@ -368,7 +374,7 @@ bar, and underscore characters.
 
 #### SquareAndCube.c
 
-**Source:** [.vscode/SquareAndCube.c](.vscode/SquareAndCube.c)
+**Source:** [Arithmetic-and-Calculations/SquareAndCube/SquareAndCube.c](Arithmetic-and-Calculations/SquareAndCube/SquareAndCube.c)
 
 **Problem:** Read an integer and calculate its square and cube.
 
