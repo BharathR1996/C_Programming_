@@ -23,6 +23,8 @@ folder for its topic.
     - [VariableInC.c](#variableincc)
     - [ConstantsInC.c](#constantsincc)
     - [DataTypesInC.C](#datatypesincc)
+  - [Arrays](#arrays)
+    - [ReverseArrayInPlace.c](#reversearrayinplacec)
   - [Input and text output](#input-and-text-output)
     - [InputFromUser.c](#inputfromuserc)
     - [InputFullString.c](#inputfullstringc)
@@ -232,6 +234,39 @@ The variable of type char is storing A
 The variable of type phrase is storing My Name is Bharath
 My Favourite number is 500
 ```
+
+### Arrays
+
+#### ReverseArrayInPlace.c
+
+**Problem:** Reverse a fixed-size integer array in place.
+
+**Logic:** Swap the first and last elements, then move both pointers toward
+the center until every pair has been exchanged.
+
+**Flow:** Start → initialize array → reverse the elements in place → print
+the result → End.
+
+**Sample output:**
+
+```text
+10 9 8 7 6 5 4 3 2 1
+```
+
+**Debugging issue:** An earlier version calculated the last element as
+`data + elements`. Because `elements` is the number of array entries, that
+address is one past the end. The out-of-bounds swap corrupted the stack and
+triggered `*** stack smashing detected ***`; the printed value at `data[9]`
+was also corrupted.
+
+**GDB diagnosis and resolution:** At the breakpoint in `main` on the print
+loop, GDB showed `i = 1`, a corrupted `data[0]` value (`-680882944` in that
+run), and the other elements in reversed order. The bad value is undefined
+behavior and can vary between runs. The endpoint was corrected to
+`data + (elements - 1)`, the last valid element. With that fix, the array
+prints in reverse order without stack corruption.
+
+---
 
 ### Input and text output
 
